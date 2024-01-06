@@ -1,4 +1,4 @@
-pub enum Registers {
+pub enum Register {
     R0,
     R1,
     R2,
