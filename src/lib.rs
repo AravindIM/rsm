@@ -1,4 +1,6 @@
+pub mod registers;
 pub mod simulator;
+pub mod word;
 
 #[cfg(test)]
 mod tests {
