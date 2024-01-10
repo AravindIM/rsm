@@ -1,20 +1,20 @@
 pub enum Exception {
     PageFault {
-        pub message: String,
-        pub page_num: u32,
-        pub cpu_mode: u32,
+        message: String,
+        page_num: u32,
+        cpu_mode: u32,
     },
     IllegalInstruction {
-        pub message: String,
-        pub cpu_mode: u32,
+        message: String,
+        cpu_mode: u32,
     },
     IllegalMemory {
-        pub message: String,
-        pub mem_addr: u32,
-        pub cpu_mode: u32,
+        message: String,
+        mem_addr: u32,
+        cpu_mode: u32,
     },
     Arithmetic {
-        pub message: String,
-        pub cpu_mode: u32,
+        message: String,
+        cpu_mode: u32,
     },
 }

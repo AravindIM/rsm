@@ -1,3 +1,4 @@
+pub mod exceptions;
 pub mod registers;
 pub mod simulator;
 pub mod word;
