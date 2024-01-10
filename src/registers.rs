@@ -18,10 +18,17 @@ impl Registers {
 
         Registers { registers: reg_map }
     }
-    pub fn get(self, name: &str) -> Result<Word, String> {
+
+    pub fn get(&self, name: &str) -> Result<Word, String> {
         match self.registers.get(name) {
             Some(w) => Ok(w.clone()),
             None => Err(format!("Invalid register {name} was queried for value")),
         }
+    }
+
+    pub fn set(mut self, name: &str, value: Word) -> Result<(), String> {
+        self.get(name)?;
+        self.registers.insert(String::from(name), value);
+        Ok(())
     }
 }
