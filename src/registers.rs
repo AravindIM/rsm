@@ -26,7 +26,7 @@ impl Registers {
         }
     }
 
-    pub fn set(mut self, name: &str, value: Word) -> Result<(), String> {
+    pub fn set(&mut self, name: &str, value: Word) -> Result<(), String> {
         self.get(name)?;
         self.registers.insert(String::from(name), value);
         Ok(())
