@@ -9,7 +9,7 @@ mod tests {
     use super::simulator::simulator_init;
 
     #[test]
-    fn running_file() {
+    fn initialise_simulator() {
         let result = simulator_init();
         assert!(result.is_ok());
     }
