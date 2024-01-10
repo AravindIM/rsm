@@ -11,6 +11,6 @@ mod tests {
     #[test]
     fn running_file() {
         let result = simulator_init();
-        assert!(result);
+        assert!(result.is_ok());
     }
 }

@@ -1,4 +1,4 @@
-pub fn simulator_init() -> bool {
+pub fn simulator_init() -> Result<(), String> {
     println!("Running the simulator");
-    true
+    Ok(())
 }
