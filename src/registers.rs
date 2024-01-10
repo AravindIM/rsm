@@ -18,4 +18,10 @@ impl Registers {
 
         Registers { registers: reg_map }
     }
+    pub fn get(self, name: &str) -> Result<Word, String> {
+        match self.registers.get(name) {
+            Some(w) => Ok(w.clone()),
+            None => Err(format!("Invalid register {name} was queried for value")),
+        }
+    }
 }
