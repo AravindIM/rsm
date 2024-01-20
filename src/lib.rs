@@ -1,3 +1,4 @@
+pub mod constants;
 pub mod exceptions;
 pub mod registers;
 pub mod simulator;
@@ -19,29 +20,16 @@ mod tests {
             "Error not thrown while accessing YEET"
         );
         assert!(
-            registers.set("R1", Word::Integer { value: 47 }).is_ok(),
+            registers.set("R1", Word::from(47)).is_ok(),
             "Cannot set R1 to 47"
         );
         assert!(
-            registers
-                .set(
-                    "YEET",
-                    Word::String {
-                        value: String::from("YEET")
-                    }
-                )
-                .is_err(),
+            registers.set("YEET", Word::new("YEET".into())).is_err(),
             "Error not thrown while accessing YEET"
         );
 
         assert!(
-            registers
-                .get("R1")
-                .is_ok_and(|x| if let Word::Integer { value } = x {
-                    value == 47
-                } else {
-                    false
-                }),
+            registers.get("R1").is_ok_and(|x| x.to_string() == "47"),
             "Register R1 contains value is that is different from the value set"
         );
     }
