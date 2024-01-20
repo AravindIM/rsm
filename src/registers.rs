@@ -13,7 +13,7 @@ impl Registers {
         ];
         let mut reg_map: HashMap<String, Word> = HashMap::new();
         for name in reg_names {
-            reg_map.insert(String::from(name), Word::Undefined);
+            reg_map.insert(String::from(name), Word::empty());
         }
 
         Registers { registers: reg_map }
