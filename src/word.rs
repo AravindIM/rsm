@@ -20,7 +20,7 @@ impl ToString for Word {
 
 impl From<i32> for Word {
     fn from(value: i32) -> Self {
-        Word(value.to_string())
+        Word::new(value.to_string())
     }
 }
 
