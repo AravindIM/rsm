@@ -30,10 +30,8 @@ impl Into<String> for Word {
     }
 }
 
-impl Into<Result<i32, String>> for Word {
-    fn into(self) -> Result<i32, String> {
-        self.0
-            .parse()
-            .map_err(|_| "Could not parse word into integer".into())
+impl Into<i32> for Word {
+    fn into(self) -> i32 {
+        self.0.parse().unwrap_or_default()
     }
 }
