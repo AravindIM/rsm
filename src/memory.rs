@@ -19,4 +19,14 @@ impl Memory {
             .ok_or(format!("Cannot access memory at {index}"))
             .map(|res| res.clone())
     }
+
+    pub fn put_word(&mut self, index: usize, word: Word) -> Result<(), String> {
+        match self.mem.get_mut(index) {
+            Some(elem) => {
+                *elem = word;
+                Ok(())
+            }
+            None => Err(format!("Cannot access memory at {index}")),
+        }
+    }
 }
