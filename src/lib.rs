@@ -1,5 +1,6 @@
 pub mod constants;
 pub mod exceptions;
+pub mod memory;
 pub mod registers;
 pub mod simulator;
 pub mod word;
