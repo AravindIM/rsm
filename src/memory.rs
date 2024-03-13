@@ -77,4 +77,10 @@ impl Memory {
             None => Err(MemoryError::IllegalAccess),
         }
     }
+
+    pub fn retrieve_raw_instr(&self, address: i32) -> Result<String, MemoryError> {
+        let instruction: String =
+            self.get_word(address)?.to_string() + &self.get_word(address + 1)?.to_string();
+        return Ok(instruction.to_owned());
+    }
 }
