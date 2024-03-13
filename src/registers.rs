@@ -1,11 +1,9 @@
-use indexmap::IndexMap;
+use std::collections::HashMap;
 
-use crate::{
-    constants::{REG_KERN_HIGH, REG_KERN_LOW, REG_PORT_HIGH, REG_PORT_LOW},
-    word::Word,
-};
+use crate::word::Word;
 pub struct Registers {
-    registers: IndexMap<String, Word>,
+    privileged_registers: Vec<String>,
+    registers: HashMap<String, Word>,
 }
 
 impl Registers {
@@ -15,12 +13,19 @@ impl Registers {
             "R14", "R15", "R16", "R17", "R18", "R19", "P0", "P1", "P2", "P3", "BP_REG", "SP_REG",
             "IP_REG", "PTBR_REG", "PTLR_REG", "EIP_REG", "EC_REG", "EPN_REG", "EMA_REG",
         ];
-        let mut registers: IndexMap<String, Word> = IndexMap::new();
+        let privileged_registers = vec![
+            "P0", "P1", "P2", "P3", "PTBR_REG", "PTLR_REG", "EIP_REG", "EC_REG", "EPN_REG",
+            "EMA_REG",
+        ];
+        let mut registers: HashMap<String, Word> = HashMap::new();
         for name in reg_names {
             registers.insert(String::from(name), Word::empty());
         }
 
-        Registers { registers }
+        Registers {
+            privileged_registers: privileged_registers.iter().map(|x| x.to_string()).collect(),
+            registers,
+        }
     }
 
     pub fn get(&self, name: &str) -> Result<Word, String> {
@@ -37,12 +42,9 @@ impl Registers {
     }
 
     pub fn is_umode(&self, name: String) -> bool {
-        match self.registers.get_index_of(&name) {
-            Some(index) => {
-                (index < REG_PORT_LOW || index > REG_PORT_HIGH)
-                    && (index < REG_KERN_LOW || index > REG_KERN_HIGH)
-            }
-            None => false,
-        }
+        self.privileged_registers
+            .iter()
+            .position(|&x| x == name)
+            .is_none()
     }
 }
