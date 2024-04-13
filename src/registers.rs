@@ -44,7 +44,7 @@ impl Registers {
     pub fn is_umode(&self, name: String) -> bool {
         self.privileged_registers
             .iter()
-            .position(|&x| x == name)
+            .position(|x| *x == name)
             .is_none()
     }
 }
