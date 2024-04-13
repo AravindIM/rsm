@@ -1,8 +1,4 @@
-use crate::{
-    constants::{RSM_MEMORY_NUM_WORDS, RSM_PAGE_SIZE},
-    errors::MemoryError,
-    word::Word,
-};
+use crate::{constants::RSM_MEMORY_NUM_WORDS, errors::MemoryError, word::Word};
 
 pub struct Memory {
     mem: Vec<Word>,
